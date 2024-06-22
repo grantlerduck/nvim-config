@@ -75,20 +75,6 @@ local plugins = {
     end,
   },
   {
-    "nvim-neotest/neotest",
-    lazy = true,
-    dependencies = {
-      "nvim-extensions/nvim-ginkgo",
-    },
-    config = function()
-      require("neotest").setup {
-        adapters = {
-          require "nvim-ginkgo",
-        },
-      }
-    end,
-  },
-  {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     opts = function()
