@@ -17,6 +17,6 @@ M.ui = {
 
 -- M.plugins = "plugins"
 
-M.ui = overrides.ui
+-- M.ui = overrides.ui
 
 return M
