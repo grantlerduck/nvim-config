@@ -32,7 +32,7 @@ local plugins = {
         desc = "Symbols (Trouble)",
       },
       {
-        "<leader>cl",
+        "<leader>cL",
         "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
         desc = "LSP Definitions / references / ... (Trouble)",
       },
@@ -45,6 +45,21 @@ local plugins = {
         "<leader>xQ",
         "<cmd>Trouble qflist toggle<cr>",
         desc = "Quickfix List (Trouble)",
+      },
+    },
+    modes = {
+      preview_float = {
+        mode = "diagnostics",
+        preview = {
+          type = "float",
+          relative = "editor",
+          border = "rounded",
+          title = "Preview",
+          title_pos = "center",
+          position = { 0, -2 },
+          size = { width = 0.3, height = 0.3 },
+          zindex = 200,
+        },
       },
     },
   },
@@ -189,13 +204,13 @@ local plugins = {
     "vimwiki/vimwiki",
   },
 
- -- {
-   -- "zbirenbaum/copilot.lua",
-    --event = "InsertEnter",
-    --config = function()
-      --require("copilot").setup(require "configs.copilot")
-    --end,
-    --endabled = false,
+  -- {
+  -- "zbirenbaum/copilot.lua",
+  --event = "InsertEnter",
+  --config = function()
+  --require("copilot").setup(require "configs.copilot")
+  --end,
+  --endabled = false,
   --},
 
   {

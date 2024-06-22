@@ -4,11 +4,11 @@
 ---@type ChadrcConfig
 local M = {}
 
-local overrides = require("configs.overrides")
+-- local overrides = require("configs.overrides")
 
 M.ui = {
 	theme = "chadracula",
-
+  theme_toggle = { "chadracula", "one_light" },
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
