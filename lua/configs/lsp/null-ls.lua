@@ -26,7 +26,7 @@ local sources = {
 	b.diagnostics.cppcheck,
 
 	-- go
-	b.formatting.gofmt,
+	b.formatting.gofumpt,
 	b.formatting.goimports_reviser,
 	b.formatting.golines,
 	b.diagnostics.golangci_lint,
