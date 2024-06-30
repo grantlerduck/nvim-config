@@ -8,7 +8,7 @@ local M = {}
 
 M.ui = {
 	theme = "chadracula",
-  theme_toggle = { "chadracula", "one_light" },
+  theme_toggle = { "chadracula", "chadracula-evondev" },
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
