@@ -42,6 +42,8 @@ M.mason = {
     -- python
     "pyright",
     "pylint",
+    "black",
+    "flake8",
 
     -- go
     "delve",

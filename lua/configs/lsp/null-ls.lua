@@ -29,6 +29,11 @@ local sources = {
   b.formatting.goimports_reviser,
   b.formatting.golines,
   b.diagnostics.golangci_lint,
+
+  -- python
+  -- b.diagnostics.pylint,
+  -- b.diagnostics.falke8,
+  -- b.formatting.black,
 }
 
 null_ls.setup {
