@@ -77,11 +77,11 @@ M.nvimtree = {
 
 M.gitsigns = {
   signs = {
-    add = { hl = "GitSignsAdd", text = "+", numhl = "GitSignsAddNr" },
-    change = { hl = "DiffAdd", text = "▎", numhl = "GitSignsChangeNr" },
-    delete = { hl = "DiffDelete", text = "-", numhl = "GitSignsDeleteNr" },
-    topdelete = { hl = "DiffDelete", text = "- ", numhl = "GitSignsDeleteNr" },
-    changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
+    add = { text = "+" },
+    change = { text = "▎" },
+    delete = { text = "-" },
+    topdelete = { text = "-" },
+    changedelete = { text = "~" },
   },
 }
 
