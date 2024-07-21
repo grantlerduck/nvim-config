@@ -56,6 +56,9 @@ M.mason = {
     "golines",
     "gomodifytags",
     "gopls",
+    "templ",
+    "htmx-lsp",
+    "tailwindcss-language-server",
   },
 }
 
