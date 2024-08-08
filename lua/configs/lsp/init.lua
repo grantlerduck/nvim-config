@@ -6,7 +6,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "tsserver", "clangd", "gopls", "pyright", "templ" }
+local servers = { "html", "cssls", "tsserver", "clangd", "gopls", "pyright", "templ", "eslint" }
 
 for _, lsp in ipairs(servers) do
   local opts = {
@@ -46,6 +46,15 @@ lspconfig.tailwindcss.setup {
       },
     },
   },
+}
+
+lspconfig.eslint.setup {
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
 }
 
 vim.filetype.add { extension = { templ = "templ" } }

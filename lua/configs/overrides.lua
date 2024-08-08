@@ -23,7 +23,7 @@ M.mason = {
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
-    "deno",
+    "eslint-lsp",
 
     -- C / C++
     "clangd",

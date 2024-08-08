@@ -9,8 +9,12 @@ local b = null_ls.builtins
 local sources = {
 
   -- webdev stuff
-  b.formatting.deno_fmt,
+  -- b.formatting.deno_fmt,
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css", "yaml", "json" } },
+  b.diagnostics.eslint_d,
+  b.formatting.eslint_d,
+  --b.formatting.eslint,
+  --b.code_actions.eslint_d,
 
   -- Lua
   b.formatting.stylua,
@@ -31,14 +35,15 @@ local sources = {
   b.diagnostics.golangci_lint,
 
   -- python
-  -- b.diagnostics.pylint,
-  -- b.diagnostics.falke8,
-  -- b.formatting.black,
+  b.diagnostics.pylint,
+  b.diagnostics.flake8,
+  b.formatting.black,
 }
 
 null_ls.setup {
   debug = true,
   sources = sources,
+  timeout_ms = 500000,
 }
 
 local M = {}
