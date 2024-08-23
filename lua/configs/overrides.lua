@@ -10,6 +10,8 @@ M.treesitter = {
     "c",
     "cpp",
     "python",
+    "rust",
+    "toml",
   },
 }
 
@@ -31,6 +33,9 @@ M.mason = {
     "cmake-language-server",
     "cpplint",
     "cpptools",
+
+    -- rust
+    "rust_analyzer",
 
     -- shell
     "shellcheck",

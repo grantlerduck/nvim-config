@@ -8,6 +8,8 @@ local b = null_ls.builtins
 
 local sources = {
 
+  b.diagnostics.typos,
+
   -- webdev stuff
   -- b.formatting.deno_fmt,
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css", "yaml", "json" } },
@@ -27,7 +29,7 @@ local sources = {
   b.diagnostics.cppcheck,
 
   -- rust
-  b.formatting.rustfmt,
+  b.formatting.dprint.with { "rust", "toml" },
 
   -- go
   b.formatting.gofumpt,

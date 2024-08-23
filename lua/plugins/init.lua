@@ -229,21 +229,33 @@ local plugins = {
 
       -- If you want to use Plant UML jar version instead of the install version
       puml_jar = "/opt/homebrew/bin/plantuml",
-        -- If you want to customize the image showed when running this plugin
-        image = {
-          darkmode = false, -- Enable or disable darkmode
-          format = "svg", -- Choose between png or svg
+      -- If you want to customize the image showed when running this plugin
+      image = {
+        darkmode = false, -- Enable or disable darkmode
+        format = "svg", -- Choose between png or svg
 
-          -- This is a default implementation of using nsxiv to open the resultant image
-          -- Edit the string to use your preferred app to open the image (as if it were a command line)
-          -- Some examples:
-          -- return "feh " .. img
-          -- return "xdg-open " .. img
-          execute_to_open = function(img)
-            return "open " .. img
+        -- This is a default implementation of using nsxiv to open the resultant image
+        -- Edit the string to use your preferred app to open the image (as if it were a command line)
+        -- Some examples:
+        -- return "feh " .. img
+        -- return "xdg-open " .. img
+        execute_to_open = function(img)
+          return "open " .. img
         end,
-      }
+      },
     },
+  },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+    config = true,
+  },
+  {
+    "saecki/crates.nvim",
+    tag = "stable",
+    config = function()
+      require("crates").setup()
+    end,
   },
 
   -- To make a plugin not be loaded
