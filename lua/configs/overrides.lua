@@ -44,6 +44,7 @@ M.mason = {
     "pylint",
     "black",
     "flake8",
+    "pylsp",
 
     -- go
     "delve",

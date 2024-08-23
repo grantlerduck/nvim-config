@@ -13,8 +13,6 @@ local sources = {
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css", "yaml", "json" } },
   b.diagnostics.eslint_d,
   b.formatting.eslint_d,
-  --b.formatting.eslint,
-  --b.code_actions.eslint_d,
 
   -- Lua
   b.formatting.stylua,
@@ -28,11 +26,17 @@ local sources = {
   b.formatting.rustfmt,
   b.diagnostics.cppcheck,
 
+  -- rust
+  b.formatting.rustfmt,
+
   -- go
   b.formatting.gofumpt,
   b.formatting.goimports_reviser,
   b.formatting.golines,
   b.diagnostics.golangci_lint,
+
+  -- proto
+  b.diagnostics.buf,
 
   -- python
   b.diagnostics.pylint,

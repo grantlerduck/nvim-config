@@ -6,7 +6,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "tsserver", "clangd", "gopls", "pyright", "templ", "eslint" }
+local servers = { "html", "cssls", "tsserver", "clangd", "gopls", "pyright", "templ", "eslint", "pylsp" }
 
 for _, lsp in ipairs(servers) do
   local opts = {
