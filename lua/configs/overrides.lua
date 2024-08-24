@@ -12,6 +12,7 @@ M.treesitter = {
     "python",
     "rust",
     "toml",
+    "go"
   },
 }
 
