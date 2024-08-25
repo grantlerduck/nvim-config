@@ -7,8 +7,8 @@ local M = {}
 -- local overrides = require("configs.overrides")
 
 M.ui = {
-  theme = "nightowl",
-  theme_toggle = { "nightowl", "chadracula-evondev" },
+  theme = "chadracula",
+  theme_toggle = { "chadracula", "chadracula-evondev" },
   -- hl_override = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
