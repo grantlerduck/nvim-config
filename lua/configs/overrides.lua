@@ -98,7 +98,6 @@ M.gitsigns = {
 M.ui = {
   tabufline = {
     lazyload = false,
-    overriden_modules = nil,
   },
 }
 
