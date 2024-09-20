@@ -12,12 +12,14 @@ M.treesitter = {
     "python",
     "rust",
     "toml",
-    "go"
+    "go",
+    "java",
+    "kotlin",
   },
 }
 
 M.mason = {
-  ensure_installed = {
+  pkgs = {
     -- lua stuff
     "lua-language-server",
     "stylua",
@@ -66,6 +68,13 @@ M.mason = {
     "templ",
     "htmx-lsp",
     "tailwindcss-language-server",
+
+    -- java
+    "java_language_server",
+    "gradle_ls",
+    "kotlin_language_server",
+    "ktlint",
+    "jdtls",
   },
 }
 
