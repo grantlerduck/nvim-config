@@ -15,6 +15,7 @@ local sources = {
   b.formatting.prettier.with { filetypes = { "html", "markdown", "css", "yaml", "json" } },
   b.diagnostics.eslint_d,
   b.formatting.eslint_d,
+  b.diagnostics.semgrep, -- go, python and js/ts, java
 
   -- Lua
   b.formatting.stylua,
@@ -44,6 +45,9 @@ local sources = {
   b.diagnostics.pylint,
   b.diagnostics.flake8,
   b.formatting.black,
+
+  -- java
+  b.formatting.google_java_format,
 }
 
 null_ls.setup {
