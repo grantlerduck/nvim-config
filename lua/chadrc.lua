@@ -6,7 +6,7 @@ local M = {}
 
 -- local overrides = require("configs.overrides")
 
-M.ui = {
+M.base46 = {
   theme = "chadracula",
   theme_toggle = { "chadracula", "chadracula-evondev" },
   -- hl_override = {
