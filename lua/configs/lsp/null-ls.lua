@@ -26,11 +26,11 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
-  b.formatting.rustfmt,
   b.diagnostics.cppcheck,
 
   -- rust
   b.formatting.dprint.with { "rust", "toml" },
+  b.formatting.rustfmt,
 
   -- go
   b.formatting.gofumpt,
@@ -47,7 +47,7 @@ local sources = {
   b.formatting.black,
 
   -- java
-  b.formatting.google_java_format,
+  --b.formatting.google_java_format,
 }
 
 null_ls.setup {

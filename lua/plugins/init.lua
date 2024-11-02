@@ -239,7 +239,7 @@ local plugins = {
       -- refer to the configuration section below
     },
   },
-  {
+  --[[{
     "nvim-java/nvim-java",
     lazy = false,
     dependencies = {
@@ -268,7 +268,7 @@ local plugins = {
         filetypes = { "java" },
       }
     end,
-  },
+  },]]
   {
     "vhyrro/luarocks.nvim",
     priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
