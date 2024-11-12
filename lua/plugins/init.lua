@@ -298,6 +298,8 @@ local plugins = {
       }
     end,
   },
+  { "nvzone/volt", lazy = true },
+  { "nvzone/menu", lazy = true },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
