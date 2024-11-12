@@ -46,6 +46,11 @@ end, { desc = "Open debugging sidebar" })
 map("n", "<Leader>gdt", "<cmd>lua require'dap-go'.debug_test()<CR>", { desc = "Debug go test" })
 map("n", "<Leader>gdl", "<cmd>lua require'dap-go'.debug_last()<CR>", { desc = "Debug last go test" })
 
+-- neotest
+map("n", "<Leader>rt", "<cmd>lua require'neotest'.run.run()<CR>", { desc = "Run nearest test" })
+map("n", "<Leader>tso", "<cmd>lua require'neotest'.summary.toggle()<CR>", { desc = "Toggle test summary" })
+map("n", "<Leader>rat", "<cmd>lua require'neotest'.run.run({suite=true})<CR>", { desc = "Run all tests" })
+
 -- gopher
 map("n", "<Leader>gsj", "<cmd>GoTagAdd json<CR>", { desc = "Add json struct tags" })
 map("n", "<Leader>gsy", "<cmd>GoTagAdd yaml<CR>", { desc = "Add yaml struct tags" })
