@@ -13,8 +13,6 @@ M.treesitter = {
     "rust",
     "toml",
     "go",
-    "java",
-    "kotlin",
   },
 }
 
@@ -68,13 +66,7 @@ M.mason = {
     "templ",
     "htmx-lsp",
     "tailwindcss-language-server",
-
-    -- java
-    "java_language_server",
-    "gradle_ls",
-    "kotlin_language_server",
-    "ktlint",
-    "jdtls",
+    "gotestsum",
   },
 }
 
@@ -107,23 +99,6 @@ M.gitsigns = {
 M.ui = {
   tabufline = {
     lazyload = false,
-  },
-}
-
-M.cmp = {
-  formatting = {
-    format = function(entry, vim_item)
-      local icons = require "nvchad.icons.lspkind"
-      vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-      vim_item.menu = ({
-        luasnip = "[Luasnip]",
-        nvim_lsp = "[Nvim LSP]",
-        buffer = "[Buffer]",
-        nvim_lua = "[Nvim Lua]",
-        path = "[Path]",
-      })[entry.source.name]
-      return vim_item
-    end,
   },
 }
 
