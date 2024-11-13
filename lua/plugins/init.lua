@@ -141,6 +141,20 @@ local plugins = {
     config = function()
       require("minuet").setup {
         provider = "claude",
+        provider_options = {
+          claude = {
+            max_tokens = 512,
+            model = "claude-3-5-sonnet-20241022",
+            system = default_system,
+            few_shots = default_few_shots,
+            stream = true,
+            optional = {
+              -- pass any additional parameters you want to send to claude request,
+              -- e.g.
+              -- stop_sequences = nil,
+            },
+          },
+        },
       }
     end,
   },
@@ -165,7 +179,7 @@ local plugins = {
 
       opts.mapping = vim.tbl_deep_extend("force", opts.mapping or {}, {
         -- if you wish to use manual complete
-        ['<A-y>'] = require('minuet').make_cmp_map(),
+        ["<A-y>"] = require("minuet").make_cmp_map(),
         -- You don't need to worry about <CR> delay because lazyvim handles this situation for you.
         ["<CR>"] = nil,
       })
