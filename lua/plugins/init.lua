@@ -141,12 +141,13 @@ local plugins = {
     config = function()
       require("minuet").setup {
         provider = "claude",
+        add_single_line_entry = false,
         provider_options = {
           claude = {
             max_tokens = 512,
             model = "claude-3-5-sonnet-20241022",
-            system = default_system,
-            few_shots = default_few_shots,
+            system = require("minuet.config").default_system,
+            few_shots = require("minuet.config").default_few_shots,
             stream = true,
             optional = {
               -- pass any additional parameters you want to send to claude request,
@@ -184,6 +185,51 @@ local plugins = {
         ["<CR>"] = nil,
       })
     end,
+  },
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = false,
+    version = false, -- set this if you want to always pull the latest change
+    opts = {
+      -- add any opts here
+    },
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
   },
   {
     "max397574/better-escape.nvim",
