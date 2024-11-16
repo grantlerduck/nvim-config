@@ -141,11 +141,12 @@ local plugins = {
     config = function()
       require("minuet").setup {
         provider = "claude",
+        enabled = false, -- i prefer to manually invoke it
         add_single_line_entry = false,
         provider_options = {
           claude = {
             max_tokens = 512,
-            model = "claude-3-5-sonnet-20241022",
+            model = "claude-3-5-haiku-20241022",
             system = require("minuet.config").default_system,
             few_shots = require("minuet.config").default_few_shots,
             stream = true,
