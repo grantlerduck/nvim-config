@@ -7,8 +7,8 @@ local M = {}
 -- local overrides = require("configs.overrides")
 
 M.base46 = {
-  theme = "mountain",
-  theme_toggle = { "mountain", "catppuccin" },
+  theme = "ashes",
+  theme_toggle = { "ashes", "chadracula" },
   -- hl_override = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },

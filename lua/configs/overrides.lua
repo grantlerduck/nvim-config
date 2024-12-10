@@ -27,6 +27,7 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "eslint-lsp",
+    "biome",
 
     -- C / C++
     "clangd",

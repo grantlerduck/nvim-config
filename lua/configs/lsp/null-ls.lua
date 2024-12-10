@@ -5,7 +5,7 @@ if not present then
 end
 
 local b = null_ls.builtins
-
+-- TODO: migrate to none-ls
 local sources = {
 
   b.diagnostics.typos,
@@ -36,7 +36,7 @@ local sources = {
   b.formatting.gofumpt,
   b.formatting.goimports_reviser,
   b.formatting.golines,
-  b.diagnostics.golangci_lint,
+  --b.diagnostics.golangci_lint, this thing runs amok on a regular basis
 
   -- proto
   b.diagnostics.buf,
