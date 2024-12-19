@@ -42,8 +42,7 @@ local sources = {
   b.diagnostics.buf,
 
   -- python
-  b.diagnostics.pylint,
-  b.diagnostics.flake8,
+  b.diagnostics.ruff,
   b.formatting.black,
 
   -- java
