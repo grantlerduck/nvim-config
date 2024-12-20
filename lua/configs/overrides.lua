@@ -2,6 +2,10 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
+    "yaml",
+    "toml",
+    "json",
+    "csv",
     "vim",
     "lua",
     "html",
@@ -13,6 +17,10 @@ M.treesitter = {
     "rust",
     "toml",
     "go",
+    "gomod",
+    "gosum",
+    "gotmpl",
+    "hcl",
   },
 }
 
@@ -26,7 +34,6 @@ M.mason = {
     "css-lsp",
     "html-lsp",
     "typescript-language-server",
-    "eslint-lsp",
     "biome",
 
     -- C / C++
@@ -47,10 +54,8 @@ M.mason = {
     "awk-language-server",
 
     -- python
-    "pyright",
-    "pylint",
     "black",
-    "flake8",
+    "ruff",
     "pylsp",
 
     -- go

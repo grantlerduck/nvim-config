@@ -171,17 +171,23 @@ local plugins = {
         priority = 100,
       })
 
+      table.insert(opts.sources, 2, {
+        name = "crates",
+        group_index = 2,
+        priority = 10,
+      })
+
       opts.performance = {
         -- It is recommended to increase the timeout duration due to
         -- the typically slower response speed of LLMs compared to
         -- other completion sources. This is not needed when you only
         -- need manual completion.
-        fetching_timeout = 2000,
+        fetching_timeout = 3000,
       }
 
       opts.mapping = vim.tbl_deep_extend("force", opts.mapping or {}, {
         -- if you wish to use manual complete
-        ["<A-y>"] = require("minuet").make_cmp_map(),
+        ["<A-y>"] = require("minuet").make_cmp_map(), -- option/alt + y
         -- You don't need to worry about <CR> delay because lazyvim handles this situation for you.
         ["<CR>"] = nil,
       })
@@ -364,6 +370,21 @@ local plugins = {
   {
     "saecki/crates.nvim",
     tag = "stable",
+    event = { "BufRead Cargo.toml" },
+    completion = {
+      cmp = {
+        enabled = true,
+      },
+      crates = {
+        enabled = true,
+        max_results = 5,
+        min_chars = 3,
+      },
+    },
+    null_ls = {
+      enabled = true,
+      name = "crates.nvim",
+    },
     config = function()
       require("crates").setup()
     end,

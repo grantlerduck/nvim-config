@@ -12,15 +12,11 @@ local servers = {
   "ts_ls",
   "clangd",
   "gopls",
-  "pyright",
   "templ",
-  "eslint",
+  "biome",
   "pylsp",
   "rust_analyzer",
-  "java_language_server",
-  "kotlin_language_server",
-  "gradle_ls",
-  "jdtls",
+  "terraformls",
 }
 
 for _, lsp in ipairs(servers) do
