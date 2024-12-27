@@ -145,7 +145,7 @@ local plugins = {
       require("minuet").setup {
         provider = "claude",
         cmp = {
-          enable_auto_complete = true,
+          enable_auto_complete = false,
         }, -- i prefer to manually invoke it
         add_single_line_entry = false,
         provider_options = {
