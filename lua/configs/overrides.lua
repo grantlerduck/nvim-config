@@ -35,6 +35,7 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "biome",
+    "js-debug-adapter",
 
     -- C / C++
     "clangd",
@@ -45,6 +46,7 @@ M.mason = {
 
     -- rust
     "rust_analyzer",
+    "codelldb",
 
     -- shell
     "shellcheck",

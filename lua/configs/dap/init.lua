@@ -4,11 +4,10 @@ local dap = require "dap"
 require "configs.dap.ui"
 
 -- debuggers
-local lldb = require "configs.dap.adapters.lldb"
+local codelldb = require "configs.dap.adapters.codelldb"
 
-dap.adapters.lldb = lldb.adapter
+dap.adapters.codelldb = codelldb.adapter
 
-dap.configurations.c = lldb.config
-dap.configurations.cpp = lldb.config
-dap.configurations.rust = lldb.config
-
+dap.configurations.c = codelldb.config
+dap.configurations.cpp = codelldb.config
+dap.configurations.rust = codelldb.config

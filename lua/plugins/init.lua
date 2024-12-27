@@ -92,7 +92,10 @@ local plugins = {
     dependencies = {
       -- format & linting
       {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
+        dependencies = {
+          "nvimtools/none-ls-extras.nvim",
+        },
         config = function()
           require "configs.lsp.null-ls"
         end,
@@ -141,7 +144,9 @@ local plugins = {
     config = function()
       require("minuet").setup {
         provider = "claude",
-        enabled = false, -- i prefer to manually invoke it
+        cmp = {
+          enable_auto_complete = true,
+        }, -- i prefer to manually invoke it
         add_single_line_entry = false,
         provider_options = {
           claude = {
@@ -162,7 +167,7 @@ local plugins = {
   },
   { "nvim-lua/plenary.nvim" },
   {
-    "hrsh7t/nvim-cmp",
+    "hrsh7th/nvim-cmp",
     opts = function(_, opts)
       -- if you wish to use autocomplete
       table.insert(opts.sources, 1, {
@@ -264,6 +269,15 @@ local plugins = {
     end,
     requires = { "mfussenegger/nvim-dap" },
   },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    config = function()
+      require("mason-nvim-dap").setup {
+        ensure_installed = { "python", "delve", "go-debug-adapter", "codelldb", "js-debug-adapter" },
+      }
+    end,
+  },
+
   -- better bdelete, close buffers without closing windows
   {
     "ojroques/nvim-bufdel",
@@ -396,12 +410,14 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
+      { "rouge8/neotest-rust", version = "*" },
       { "fredrikaverpil/neotest-golang", version = "*" }, -- Installation
     },
     config = function()
       require("neotest").setup {
         adapters = {
           require "neotest-golang", -- Registration
+          require "neotest-rust",
         },
       }
     end,

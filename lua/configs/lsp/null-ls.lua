@@ -1,20 +1,18 @@
-local present, null_ls = pcall(require, "null-ls")
-
-if not present then
-  return
-end
+local null_ls = require "null-ls"
 
 local b = null_ls.builtins
--- TODO: migrate to none-ls
 local sources = {
 
-  b.diagnostics.typos,
+  b.diagnostics.codespell,
+  require "none-ls.formatting.trim_newlines",
+  require "none-ls.formatting.trim_whitespace",
 
   -- webdev stuff
   -- b.formatting.deno_fmt,
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css", "yaml", "json" } },
-  b.diagnostics.eslint_d,
-  b.formatting.eslint_d,
+  b.formatting.prettier.with { filetypes = { "html", "markdown", "css", "yaml" } },
+  b.formatting.biome.with {
+    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc", "css", "graphql" },
+  },
   b.diagnostics.semgrep, -- go, python and js/ts, java
 
   -- Lua
@@ -22,15 +20,13 @@ local sources = {
 
   -- Shell
   b.formatting.shfmt,
-  b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
   -- cpp
   b.formatting.clang_format,
   b.diagnostics.cppcheck,
 
   -- rust
-  b.formatting.dprint.with { "rust", "toml" },
-  b.formatting.rustfmt,
+  require "none-ls.formatting.rustfmt",
 
   -- go
   b.formatting.gofumpt,
@@ -42,8 +38,13 @@ local sources = {
   b.diagnostics.buf,
 
   -- python
-  b.diagnostics.ruff,
+  require "none-ls.formatting.ruff",
+  require "none-ls.diagnostics.ruff",
   b.formatting.black,
+
+  -- hcl
+  b.formatting.hclfmt,
+  b.diagnostics.terragrunt_validate,
 
   -- java
   --b.formatting.google_java_format,
