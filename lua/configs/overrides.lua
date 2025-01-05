@@ -21,6 +21,7 @@ M.treesitter = {
     "gosum",
     "gotmpl",
     "hcl",
+    "terraform",
   },
 }
 

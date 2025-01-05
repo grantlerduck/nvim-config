@@ -45,6 +45,7 @@ local sources = {
   -- hcl
   b.formatting.hclfmt,
   b.diagnostics.terragrunt_validate,
+  b.diagnostics.tfsec,
 
   -- java
   --b.formatting.google_java_format,
