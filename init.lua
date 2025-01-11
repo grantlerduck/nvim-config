@@ -28,6 +28,11 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+-- folding
+vim.opt.foldenable = false
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")

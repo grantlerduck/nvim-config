@@ -38,7 +38,7 @@ vim.cmd [["
     augroup gitsetup
         autocmd!
         autocmd FileType gitcommit
-                \ autocmd CursorMoved,CursorMovedI * 
+                \ autocmd CursorMoved,CursorMovedI *
                         \ let &l:textwidth = line('.') == 1 ? 50 : 72
 augroup end
 "]]
