@@ -149,16 +149,33 @@ local plugins = {
         }, -- i prefer to manually invoke it
         add_single_line_entry = false,
         provider_options = {
-          claude = {
-            max_tokens = 512,
-            model = "claude-3-5-haiku-20241022",
-            system = require("minuet.config").default_system,
-            few_shots = require("minuet.config").default_few_shots,
-            stream = true,
+          -- claude = {
+          --   max_tokens = 512,
+          --   model = "claude-3-5-haiku-20241022",
+          --   system = require("minuet.config").default_system,
+          --   few_shots = require("minuet.config").default_few_shots,
+          --   stream = true,
+          --   optional = {
+          --     -- pass any additional parameters you want to send to claude request,
+          --     -- e.g.
+          --     -- stop_sequences = nil,
+          --   },
+          -- },
+          gemini = {
             optional = {
-              -- pass any additional parameters you want to send to claude request,
-              -- e.g.
-              -- stop_sequences = nil,
+              generationConfig = {
+                maxOutputTokens = 256,
+              },
+              safetySettings = {
+                {
+                  -- HARM_CATEGORY_HATE_SPEECH,
+                  -- HARM_CATEGORY_HARASSMENT
+                  -- HARM_CATEGORY_SEXUALLY_EXPLICIT
+                  category = "HARM_CATEGORY_DANGEROUS_CONTENT",
+                  -- BLOCK_NONE
+                  threshold = "BLOCK_ONLY_HIGH",
+                },
+              },
             },
           },
         },
