@@ -424,6 +424,16 @@ local plugins = {
   },
   { "nvzone/volt", lazy = true },
   { "nvzone/menu", lazy = true },
+  -- visualize rust lifetimes
+  {
+    "cordx56/rustowl",
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+      local lspconfig = require "lspconfig"
+      lspconfig.rustowlsp.setup {}
+    end,
+    lazy = false,
+  },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
