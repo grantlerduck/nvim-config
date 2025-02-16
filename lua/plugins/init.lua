@@ -143,7 +143,7 @@ local plugins = {
     "milanglacier/minuet-ai.nvim",
     config = function()
       require("minuet").setup {
-        provider = "claude",
+        provider = "gemini",
         cmp = {
           enable_auto_complete = false,
         }, -- i prefer to manually invoke it
