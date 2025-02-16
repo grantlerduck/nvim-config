@@ -40,13 +40,11 @@ local sources = {
   -- python
   require "none-ls.formatting.ruff",
   require "none-ls.diagnostics.ruff",
-  b.formatting.black,
 
   -- hcl
-  b.formatting.hclfmt,
-  b.diagnostics.terragrunt_validate,
   b.diagnostics.tfsec,
-
+  b.diagnostics.terraform_validate,
+  b.formatting.terraform_fmt,
   -- java
   --b.formatting.google_java_format,
 }

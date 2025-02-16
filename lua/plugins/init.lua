@@ -139,7 +139,7 @@ local plugins = {
     "lewis6991/gitsigns.nvim",
     opts = overrides.gitsigns,
   },
-  {
+  { -- I want to use mineut as my secondary AI assistenace with a cheaper and faster model whiel Avantes chat is my main AI tool
     "milanglacier/minuet-ai.nvim",
     config = function()
       require("minuet").setup {

@@ -7,8 +7,8 @@ local M = {}
 -- local overrides = require("configs.overrides")
 
 M.base46 = {
-  theme = "nightowl",
-  theme_toggle = { "pastelbeans", "nightowl" },
+  theme = "monochrome",
+  theme_toggle = { "monochrome", "catppuccin" },
   -- hl_override = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },

@@ -17,10 +17,6 @@ map(
   "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
   { desc = "Find all files" }
 )
-map("n", "<Leader>pg", "<cmd>Telescope live_grep<CR>", { desc = "Grep files" })
-map("n", "<Leader>pb", "<cmd>Telescope buffers<CR>", { desc = "Find buffers" })
-map("n", "<Leader>ph", "<cmd>Telescope help_tags<CR>", { desc = "Help page" })
-map("n", "<Leader>po", "<cmd>Telescope oldfiles<CR>", { desc = "Find oldfiles" })
 map("n", "<Leader>pk", "<cmd>Telescope keymaps<CR>", { desc = "Show keymaps" })
 
 -- Nvim DAP
@@ -105,3 +101,35 @@ map("n", "<RightMouse>", function()
   local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
   require("menu").open(options, { mouse = true })
 end, {})
+
+-- minuet
+-- {
+--     -- accept whole completion
+--     require('minuet.virtualtext').action.accept,
+--     -- accept by line
+--     require('minuet.virtualtext').action.accept_line,
+--     -- accept n lines (prompts for number)
+--     require('minuet.virtualtext').action.accept_n_lines,
+--     require('minuet.virtualtext').action.next,
+--     require('minuet.virtualtext').action.prev,
+--     require('minuet.virtualtext').action.dismiss,
+--     -- whether the virtual text is visible in current buffer
+--     require('minuet.virtualtext').action.is_visible,
+-- }
+
+map("i", "<C-l>", "<cmd>lua require'minuet.virtualtext'.action.accept()<CR>", { desc = "Minuet accept virtual text" })
+
+map("i", "<C-j>", "<cmd>lua require'minuet.virtualtext'.action.next()<CR>", { desc = "Minuet next virtual text" })
+map("i", "<C-k>", "<cmd>lua require'minuet.virtualtext'.action.prev()<CR>", { desc = "Minuet previous virtual text" })
+
+map("i", "<C-h>", "<cmd>lua require'minuet.virtualtext'.action.dismiss()<CR>", { desc = "Minuet dismiss virtual text" })
+
+-- Additional useful mappings for line-by-line acceptance
+map(
+  "i",
+  "<C-L>",
+  "<cmd>lua require'minuet.virtualtext'.action.accept_line()<CR>",
+  { desc = "Minuet accept current line" }
+)
+
+map("n", "<Leader>mv", "<cmd>Minuet virtualtext toggle<CR>", { desc = "Minuet toggle virtual text visibility" })
