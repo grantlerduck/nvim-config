@@ -7,6 +7,7 @@ map("n", ";", ":", { nowait = true, desc = "Command mode" })
 map("n", "<Leader><Leader>", ":nohlsearch<CR>", { desc = "Clear search highlighting" })
 map("n", "C-f", ":Format<CR>", { desc = "Format file" })
 map("n", "<Leader>s", ":ClangdSwitchSourceHeader<CR>", { desc = "Switch between header and source file" })
+map("n", "<Leader>tt", "<cmd>lua require'base46'.toggle_theme()<CR>", { desc = "Toggle theme" })
 
 -- Telescope
 map("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "Find files in version control" })

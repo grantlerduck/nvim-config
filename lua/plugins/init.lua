@@ -143,6 +143,9 @@ local plugins = {
     "milanglacier/minuet-ai.nvim",
     config = function()
       require("minuet").setup {
+        virtualtext = {
+          auto_trigger_ft = { "*" },
+        },
         provider = "gemini",
         cmp = {
           enable_auto_complete = false,

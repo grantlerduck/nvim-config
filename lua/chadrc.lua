@@ -7,7 +7,7 @@ local M = {}
 -- local overrides = require("configs.overrides")
 
 M.base46 = {
-  theme = "monochrome",
+  theme = "catppuccin",
   theme_toggle = { "catppuccin", "github_light" },
   -- hl_override = {
   -- 	Comment = { italic = true },
