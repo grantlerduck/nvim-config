@@ -118,18 +118,7 @@ end, {})
 -- }
 
 map("i", "<C-l>", "<cmd>lua require'minuet.virtualtext'.action.accept()<CR>", { desc = "Minuet accept virtual text" })
-
 map("i", "<C-j>", "<cmd>lua require'minuet.virtualtext'.action.next()<CR>", { desc = "Minuet next virtual text" })
 map("i", "<C-k>", "<cmd>lua require'minuet.virtualtext'.action.prev()<CR>", { desc = "Minuet previous virtual text" })
-
 map("i", "<C-h>", "<cmd>lua require'minuet.virtualtext'.action.dismiss()<CR>", { desc = "Minuet dismiss virtual text" })
-
--- Additional useful mappings for line-by-line acceptance
-map(
-  "i",
-  "<C-L>",
-  "<cmd>lua require'minuet.virtualtext'.action.accept_line()<CR>",
-  { desc = "Minuet accept current line" }
-)
-
 map("n", "<Leader>mv", "<cmd>Minuet virtualtext toggle<CR>", { desc = "Minuet toggle virtual text visibility" })
