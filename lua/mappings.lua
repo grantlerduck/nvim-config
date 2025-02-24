@@ -93,6 +93,10 @@ map("n", "H", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Go to previous buffer" })
 
+map("n", "<Leader>x", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Close current buffer" })
+
 -- Plenary
 map("n", "<Leader>t", "<Plug>PlenaryTestFile", { desc = "Run plenary test on file" })
 
