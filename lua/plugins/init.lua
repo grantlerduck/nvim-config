@@ -231,6 +231,13 @@ local plugins = {
         temperature = 0,
         max_tokens = 4096,
       },
+      behaviour = {
+        enable_claude_text_editor_tool_mode = true,
+      },
+      web_search_engine = {
+        provider = "brave", -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+        proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
