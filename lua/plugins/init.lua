@@ -460,12 +460,19 @@ local plugins = {
   -- visualize rust lifetimes
   {
     "cordx56/rustowl",
-    dependencies = { "neovim/nvim-lspconfig" },
-    config = function()
-      local lspconfig = require "lspconfig"
-      lspconfig.rustowlsp.setup {}
-    end,
-    lazy = false,
+    version = "*", -- Latest stable version
+    build = "cd rustowl && cargo install --path . --locked",
+    lazy = false, -- This plugin is already lazy
+    opts = {
+      auto_enable = true,
+      client = {
+        on_attach = function(_, buffer)
+          vim.keymap.set("n", "<leader>o", function()
+            require("rustowl").toggle(buffer)
+          end, { buffer = buffer, desc = "Toggle RustOwl" })
+        end,
+      },
+    },
   },
   -- To make a plugin not be loaded
   -- {
