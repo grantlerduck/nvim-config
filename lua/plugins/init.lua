@@ -458,22 +458,6 @@ local plugins = {
   { "nvzone/volt", lazy = true },
   { "nvzone/menu", lazy = true },
   -- visualize rust lifetimes
-  {
-    "cordx56/rustowl",
-    version = "*", -- Latest stable version
-    build = "cd rustowl && cargo install --path . --locked",
-    lazy = false, -- This plugin is already lazy
-    opts = {
-      auto_enable = true,
-      client = {
-        on_attach = function(_, buffer)
-          vim.keymap.set("n", "<leader>o", function()
-            require("rustowl").toggle(buffer)
-          end, { buffer = buffer, desc = "Toggle RustOwl" })
-        end,
-      },
-    },
-  },
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
