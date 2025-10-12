@@ -5,12 +5,10 @@ local on_init = configs.on_init
 local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
-local lspconfig = require "lspconfig"
+-- Basic servers with standard configuration
 local servers = {
-  "html",
   "cssls",
   "ts_ls",
-  "clangd",
   "gopls",
   "templ",
   "biome",
@@ -19,6 +17,7 @@ local servers = {
   "terraformls",
 }
 
+-- Configure servers using new API
 for _, lsp in ipairs(servers) do
   local opts = {
     on_init = on_init,
@@ -26,27 +25,50 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 
+  -- Check for server-specific settings
   local exists, settings = pcall(require, "configs.lsp.server-settings." .. lsp)
   if exists then
     opts = merge_tb("force", settings, opts)
   end
 
-  lspconfig[lsp].setup(opts)
+  vim.lsp.config(lsp, opts)
 end
 
-lspconfig.html.setup {
+-- HTML server with custom filetypes
+vim.lsp.config("html", {
+  on_init = on_init,
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "html", "templ" },
-}
+})
 
-lspconfig.htmx.setup {
+-- HTMX server
+vim.lsp.config("htmx", {
+  on_init = on_init,
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "html", "templ" },
-}
+})
 
-lspconfig.tailwindcss.setup {
+-- Clangd with custom settings
+local exists, clangd_settings = pcall(require, "configs.lsp.server-settings.clangd")
+if exists then
+  vim.lsp.config("clangd", merge_tb("force", clangd_settings, {
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }))
+else
+  vim.lsp.config("clangd", {
+    on_init = on_init,
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+end
+
+-- Tailwind CSS with custom settings
+vim.lsp.config("tailwindcss", {
+  on_init = on_init,
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = { "templ", "astro", "javascript", "typescript", "react" },
@@ -57,16 +79,35 @@ lspconfig.tailwindcss.setup {
       },
     },
   },
-}
+})
 
-lspconfig.eslint.setup {
+-- ESLint with custom on_attach
+vim.lsp.config("eslint", {
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       command = "EslintFixAll",
     })
   end,
-}
+  capabilities = capabilities,
+})
+
+-- Enable all configured servers
+vim.lsp.enable({
+  "html",
+  "cssls",
+  "ts_ls",
+  "clangd",
+  "gopls",
+  "templ",
+  "biome",
+  "pylsp",
+  "rust_analyzer",
+  "terraformls",
+  "htmx",
+  "tailwindcss",
+  "eslint",
+})
 
 vim.filetype.add { extension = { templ = "templ" } }
 

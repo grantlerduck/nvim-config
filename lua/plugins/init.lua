@@ -225,11 +225,15 @@ local plugins = {
     version = false, -- set this if you want to always pull the latest change
     opts = {
       provider = "claude",
-      claude = {
-        endpoint = "https://api.anthropic.com",
-        model = "claude-3-7-sonnet-20250219",
-        temperature = 0,
-        max_tokens = 4096,
+      providers = {
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          model = "sonnet-20250219-sonnet-20250219",
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 4096,
+          },
+        },
       },
       behaviour = {
         enable_claude_text_editor_tool_mode = true,
@@ -402,11 +406,13 @@ local plugins = {
     },
     config = function()
       require("java").setup {}
-      require("lspconfig").jdtls.setup {
+      -- Using new LSP API instead of lspconfig
+      vim.lsp.config("jdtls", {
         on_attach = require("nvchad.configs.lspconfig").on_attach,
         capabilities = require("nvchad.configs.lspconfig").capabilities,
         filetypes = { "java" },
-      }
+      })
+      vim.lsp.enable("jdtls")
     end,
   },]]
   {
