@@ -15,6 +15,7 @@ local servers = {
   "pylsp",
   "rust_analyzer",
   "terraformls",
+  "kotlin_lsp",
 }
 
 -- Configure servers using new API
@@ -107,6 +108,7 @@ vim.lsp.enable({
   "htmx",
   "tailwindcss",
   "eslint",
+  "kotlin_lsp",
 })
 
 vim.filetype.add { extension = { templ = "templ" } }

@@ -20,7 +20,12 @@ M.treesitter = {
     "gomod",
     "gosum",
     "gotmpl",
+    "hcl",
     "terraform",
+    "kotlin",
+    "java",
+    "graphql",
+    "tsx",
   },
 }
 
@@ -75,6 +80,12 @@ M.mason = {
     "htmx-lsp",
     "tailwindcss-language-server",
     "gotestsum",
+
+    -- kotlin
+    "kotlin-lsp",
+    "ktfmt",
+    "detekt",
+    "kotlin-debug-adapter",
   },
 }
 

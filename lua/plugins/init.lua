@@ -113,6 +113,7 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     opts = overrides.treesitter,
   },
   {
@@ -152,22 +153,11 @@ local plugins = {
         }, -- i prefer to manually invoke it
         add_single_line_entry = false,
         provider_options = {
-          -- claude = {
-          --   max_tokens = 512,
-          --   model = "claude-3-5-haiku-20241022",
-          --   system = require("minuet.config").default_system,
-          --   few_shots = require("minuet.config").default_few_shots,
-          --   stream = true,
-          --   optional = {
-          --     -- pass any additional parameters you want to send to claude request,
-          --     -- e.g.
-          --     -- stop_sequences = nil,
-          --   },
-          -- },
           gemini = {
+            model = "gemini-3.1-flash-lite-preview",
             optional = {
               generationConfig = {
-                maxOutputTokens = 256,
+                maxOutputTokens = 512,
               },
               safetySettings = {
                 {
@@ -219,65 +209,16 @@ local plugins = {
     end,
   },
   {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    version = false, -- set this if you want to always pull the latest change
-    opts = {
-      provider = "claude",
-      providers = {
-        claude = {
-          endpoint = "https://api.anthropic.com",
-          model = "sonnet-20250219-sonnet-20250219",
-          extra_request_body = {
-            temperature = 0,
-            max_tokens = 4096,
-          },
-        },
-      },
-      behaviour = {
-        enable_claude_text_editor_tool_mode = true,
-      },
-      web_search_engine = {
-        provider = "brave", -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
-        proxy = nil, -- proxy support, e.g., http://127.0.0.1:7890
-      },
-    },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+    keys = {
+      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
     },
   },
   {
@@ -293,13 +234,6 @@ local plugins = {
     end,
   },
   {
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      require("dapui").setup()
-    end,
-    requires = { "mfussenegger/nvim-dap" },
-  },
-  {
     "theHamsta/nvim-dap-virtual-text",
     config = function()
       require("nvim-dap-virtual-text").setup()
@@ -310,7 +244,7 @@ local plugins = {
     "jay-babu/mason-nvim-dap.nvim",
     config = function()
       require("mason-nvim-dap").setup {
-        ensure_installed = { "python", "delve", "go-debug-adapter", "codelldb", "js-debug-adapter" },
+        ensure_installed = { "python", "delve", "go-debug-adapter", "codelldb", "js-debug-adapter", "kotlin-debug-adapter" },
       }
     end,
   },
@@ -449,14 +383,60 @@ local plugins = {
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "weilbith/neotest-gradle", -- Gradle adapter
       { "rouge8/neotest-rust", version = "*" },
       { "fredrikaverpil/neotest-golang", version = "*" }, -- Installation
     },
     config = function()
+      -- Patch neotest-gradle for multi-module project support
+      local gradle = require "neotest-gradle"
+      local sep = package.config:sub(1, 1)
+
+      local original_build_spec = gradle.build_spec
+      gradle.build_spec = function(args)
+        local position = args.tree:data()
+        local module_dir = vim.fs.root(position.path, { "build.gradle", "build.gradle.kts" })
+        local root_dir = vim.fs.root(position.path, { "settings.gradle", "settings.gradle.kts" })
+
+        if not root_dir or not module_dir or root_dir == module_dir then
+          return original_build_spec(args)
+        end
+
+        local gradlew = root_dir .. sep .. "gradlew"
+        if vim.fn.executable(gradlew) ~= 1 then
+          gradlew = "gradle"
+        end
+
+        local rel_path = module_dir:sub(#root_dir + 2)
+        local gradle_module = ":" .. rel_path:gsub(sep, ":")
+
+        local filter = {}
+        if position.type == "test" or position.type == "namespace" then
+          vim.list_extend(filter, { "--tests", "'" .. position.id .. "'" })
+        elseif position.type == "file" then
+          for _, pos in args.tree:iter() do
+            if pos.type == "namespace" then
+              vim.list_extend(filter, { "--tests", "'" .. pos.id .. "'" })
+            end
+          end
+        end
+
+        local command = { gradlew, "--project-dir", root_dir, gradle_module .. ":test" }
+        vim.list_extend(command, filter)
+
+        return {
+          command = table.concat(command, " "),
+          context = {
+            test_resuls_directory = module_dir .. sep .. "build" .. sep .. "test-results" .. sep .. "test",
+          },
+        }
+      end
+
       require("neotest").setup {
         adapters = {
           require "neotest-golang", -- Registration
           require "neotest-rust",
+          gradle,
         },
       }
     end,
@@ -464,16 +444,13 @@ local plugins = {
   { "nvzone/volt", lazy = true },
   { "nvzone/menu", lazy = true },
   -- visualize rust lifetimes
-  -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
   --   enabled = false
   -- },
-  -- All NvChad plugins are lazy-loaded by default
-  -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-  -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-  -- {
-  --   "mg979/vim-visual-multi",
-  --   lazy = false,
+  {
+    "mg979/vim-visual-multi",
+    keys = { "<C-d>", "<C-S-j>", "<C-S-k>" },
+  },
 }
 return plugins

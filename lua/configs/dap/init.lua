@@ -11,3 +11,9 @@ dap.adapters.codelldb = codelldb.adapter
 dap.configurations.c = codelldb.config
 dap.configurations.cpp = codelldb.config
 dap.configurations.rust = codelldb.config
+
+-- kotlin
+local kotlin = require "configs.dap.adapters.kotlin"
+
+dap.adapters.kotlin = kotlin.adapter
+dap.configurations.kotlin = kotlin.config
