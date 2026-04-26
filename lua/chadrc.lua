@@ -8,8 +8,8 @@ local overrides = require("configs.overrides")
 local statusline_custom = require("configs.statusline")
 
 M.base46 = {
-  theme = "vesper",
-  theme_toggle = { "vesper", "catppuccin-latte" },
+  theme = "onenord",
+  theme_toggle = { "onenord", "onenord_light" },
 
   hl_override = {
     -- CPU usage colors

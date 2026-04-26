@@ -244,7 +244,14 @@ local plugins = {
     "jay-babu/mason-nvim-dap.nvim",
     config = function()
       require("mason-nvim-dap").setup {
-        ensure_installed = { "python", "delve", "go-debug-adapter", "codelldb", "js-debug-adapter", "kotlin-debug-adapter" },
+        ensure_installed = {
+          "python",
+          "delve",
+          "go-debug-adapter",
+          "codelldb",
+          "js-debug-adapter",
+          "kotlin-debug-adapter",
+        },
       }
     end,
   },
@@ -266,15 +273,6 @@ local plugins = {
       -- or just leave it empty :)
     },
   },
-  -- {
-  -- "zbirenbaum/copilot.lua",
-  --event = "InsertEnter",
-  --config = function()
-  --require("copilot").setup(require "configs.copilot")
-  --end,
-  --endabled = false,
-  --},
-
   {
     "leoluz/nvim-dap-go",
     ft = "go",
@@ -282,31 +280,6 @@ local plugins = {
     config = function(_, opts)
       require("dap-go").setup(opts)
     end,
-  },
-  {
-    "javiorfo/nvim-soil",
-    -- Optional for puml syntax highlighting:
-    dependencies = { "javiorfo/nvim-nyctophilia" },
-    lazy = true,
-    ft = "plantuml",
-    opts = {
-      -- If you want to change default configurations
-      -- If you want to use Plant UML jar version instead of the install version
-      puml_jar = "/opt/homebrew/bin/plantuml",
-      -- If you want to customize the image showed when running this plugin
-      image = {
-        darkmode = false, -- Enable or disable darkmode
-        format = "svg", -- Choose between png or svg
-        -- This is a default implementation of using nsxiv to open the resultant image
-        -- Edit the string to use your preferred app to open the image (as if it were a command line)
-        -- Some examples:
-        -- return "feh " .. img
-        -- return "xdg-open " .. img
-        execute_to_open = function(img)
-          return "open " .. img
-        end,
-      },
-    },
   },
   {
     "maxandron/goplements.nvim",
